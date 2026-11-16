@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FryczL4</string>
+    <string name="calc_title">Kalkulator Liczb Zespolonych</string>
+    <string name="label_a">Liczba A:</string>
+    <string name="label_b">Liczba B:</string>
+    <string name="hint_re">Re</string>
+    <string name="hint_im">Im</string>
+    <string-array name="operations_array">
+        <item>+</item>
+        <item>*</item>
+    </string-array>
+</resources>

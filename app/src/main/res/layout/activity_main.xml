@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/kosc_sloniowa"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calc_title"
+        android:textColor="@color/indygo"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Liczba A: etykieta po lewej, pola po prawej w jednym rzędzie -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_a"
+            android:textColor="@color/indygo"
+            android:textSize="18sp"
+            android:layout_marginEnd="12dp" />
+
+        <EditText
+            android:id="@+id/etRealA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:hint="@string/hint_re"
+            android:textColor="@color/indygo"
+            android:textColorHint="@color/indygo"
+            android:background="@drawable/box_background"
+            android:padding="8dp"
+            android:maxLength="10"
+            android:inputType="numberSigned|numberDecimal"
+            android:layout_marginEnd="8dp"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/etImagA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:hint="@string/hint_im"
+            android:textColor="@color/indygo"
+            android:textColorHint="@color/indygo"
+            android:background="@drawable/box_background"
+            android:padding="8dp"
+            android:maxLength="10"
+            android:inputType="numberSigned|numberDecimal"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!-- Liczba B: etykieta po lewej, pola po prawej w jednym rzędzie -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_b"
+            android:textColor="@color/indygo"
+            android:textSize="18sp"
+            android:layout_marginEnd="12dp" />
+
+        <EditText
+            android:id="@+id/etRealB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:hint="@string/hint_re"
+            android:textColor="@color/indygo"
+            android:textColorHint="@color/indygo"
+            android:background="@drawable/box_background"
+            android:padding="8dp"
+            android:maxLength="10"
+            android:inputType="numberSigned|numberDecimal"
+            android:layout_marginEnd="8dp"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/etImagB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:hint="@string/hint_im"
+            android:textColor="@color/indygo"
+            android:textColorHint="@color/indygo"
+            android:background="@drawable/box_background"
+            android:padding="8dp"
+            android:maxLength="10"
+            android:inputType="numberSigned|numberDecimal"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!-- ReselectableSpinner (pole rozwijane) po liczbach i przed przyciskami -->
+    <com.example.fryczl4.ReselectableSpinner
+        android:id="@+id/spinnerOperation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:background="@drawable/box_background"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Przyciski -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="+"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/morski_noca"
+            android:layout_marginEnd="12dp" />
+
+        <Button
+            android:id="@+id/btnMultiply"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="*"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/morski_noca" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="morski_noca">#162E35</color>
+    <color name="kosc_sloniowa">#FFFFF0</color>
+    <color name="indygo">#4B0082</color>
+</resources>
