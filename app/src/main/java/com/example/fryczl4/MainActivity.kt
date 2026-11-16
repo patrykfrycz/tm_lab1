@@ -7,7 +7,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -23,9 +22,10 @@ class MainActivity : AppCompatActivity() {
         val etRealB = findViewById<EditText>(R.id.etRealB)
         val etImagB = findViewById<EditText>(R.id.etImagB)
 
-        val spinnerOperation = findViewById<Spinner>(R.id.spinnerOperation)
+        val spinnerOperation = findViewById<ReselectableSpinner>(R.id.spinnerOperation)
         val btnAdd = findViewById<Button>(R.id.btnAdd)
         val btnMultiply = findViewById<Button>(R.id.btnMultiply)
+        val complexPlaneView = findViewById<ComplexPlaneView>(R.id.complexPlaneView)
 
         val adapter = ArrayAdapter.createFromResource(
             this,
@@ -35,45 +35,53 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerOperation.adapter = adapter
 
-        var isInitialSelection = true
-
         spinnerOperation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (isInitialSelection) {
-                    isInitialSelection = false
-                    return
+                if (position == 0) {
+                    return // Pozycja początkowa (prompt)
                 }
 
                 hideKeyboard()
-                val inputs = validateInputs(etRealA, etImagA, etRealB, etImagB) ?: return
+                val inputs = validateInputs(etRealA, etImagA, etRealB, etImagB)
+                if (inputs == null) {
+                    spinnerOperation.setSelection(0)
+                    return
+                }
                 val (aRe, aIm, bRe, bIm) = inputs
 
                 when (position) {
-                    0 -> { // Plus (Dodawanie)
+                    1 -> { // Plus (Dodawanie)
                         val resRe = aRe + bRe
                         val resIm = aIm + bIm
 
                         if (!resRe.isFinite() || !resIm.isFinite()) {
                             showToast("Wynik wykracza poza dopuszczalny zakres liczbowy (overflow)!")
+                            spinnerOperation.setSelection(0)
                             return
                         }
 
+                        complexPlaneView.setResult(resRe, resIm)
                         val resultString = formatComplex(resRe, resIm)
                         showToast("Wynik dodawania: $resultString")
                     }
-                    1 -> { // Gwiazdka (Mnożenie)
+                    2 -> { // Gwiazdka (Mnożenie)
                         val resRe = aRe * bRe - aIm * bIm
                         val resIm = aRe * bIm + aIm * bRe
 
                         if (!resRe.isFinite() || !resIm.isFinite()) {
                             showToast("Wynik wykracza poza dopuszczalny zakres liczbowy (overflow)!")
+                            spinnerOperation.setSelection(0)
                             return
                         }
 
+                        complexPlaneView.setResult(resRe, resIm)
                         val resultString = formatComplex(resRe, resIm)
                         showToast("Wynik mnożenia: $resultString")
                     }
                 }
+
+                // Reset spinnera do pozycji 0, aby ponowne wybranie tej samej opcji działało ponownie
+                spinnerOperation.setSelection(0)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -92,6 +100,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            complexPlaneView.setResult(resRe, resIm)
             val resultString = formatComplex(resRe, resIm)
             showToast("Wynik dodawania: $resultString")
         }
@@ -110,6 +119,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            complexPlaneView.setResult(resRe, resIm)
             val resultString = formatComplex(resRe, resIm)
             showToast("Wynik mnożenia: $resultString")
         }

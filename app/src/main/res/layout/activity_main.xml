@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/kosc_sloniowa"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="20dp"
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:text="@string/calc_title"
         android:textColor="@color/indygo"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="16dp" />
 
     <!-- Liczba A: etykieta po lewej, pola po prawej w jednym rzędzie -->
     <LinearLayout
@@ -24,14 +24,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_a"
             android:textColor="@color/indygo"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginEnd="12dp" />
 
         <EditText
@@ -72,14 +72,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_b"
             android:textColor="@color/indygo"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginEnd="12dp" />
 
         <EditText
@@ -121,14 +121,15 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:background="@drawable/box_background"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="16dp" />
 
     <!-- Przyciski -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
 
         <Button
             android:id="@+id/btnAdd"
@@ -137,7 +138,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:text="+"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textColor="@color/white"
             android:backgroundTint="@color/morski_noca"
             android:layout_marginEnd="12dp" />
@@ -149,9 +150,17 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:text="*"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textColor="@color/white"
             android:backgroundTint="@color/morski_noca" />
     </LinearLayout>
+
+    <!-- Wykres płaszczyzny zespolonej -->
+    <com.example.fryczl4.ComplexPlaneView
+        android:id="@+id/complexPlaneView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/box_background" />
 
 </LinearLayout>
