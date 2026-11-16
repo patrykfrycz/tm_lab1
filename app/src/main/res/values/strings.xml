@@ -5,6 +5,7 @@
     <string name="label_b">Liczba B:</string>
     <string name="hint_re">Re</string>
     <string name="hint_im">Im</string>
+    <string name="spinner_desc">Wybór operacji</string>
     <string-array name="operations_array">
         <item>+</item>
         <item>*</item>

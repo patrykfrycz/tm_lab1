@@ -121,7 +121,9 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:background="@drawable/box_background"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/spinner_desc"
+        tools:ignore="SpeakableTextPresent" />
 
     <!-- Przyciski -->
     <LinearLayout

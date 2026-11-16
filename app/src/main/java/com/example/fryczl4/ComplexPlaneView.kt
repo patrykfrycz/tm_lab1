@@ -27,7 +27,8 @@ class ComplexPlaneView @JvmOverloads constructor(
 
     private val arrowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = ContextCompat.getColor(context, R.color.indygo)
-        style = Paint.Style.FILL
+        strokeWidth = 3f
+        style = Paint.Style.STROKE
     }
 
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -59,23 +60,22 @@ class ComplexPlaneView @JvmOverloads constructor(
         canvas.drawLine(0f, cy, w, cy, axisPaint) // X axis
         canvas.drawLine(cx, 0f, cx, h, axisPaint) // Y axis
 
-        // Arrowheads on axes
+        // Hollow arrowheads on axes (V-shape stroke paths)
         val arrowSize = 16f
-        // X axis right arrow
+
+        // X axis right arrow (hollow V-shape)
         val xArrowPath = Path().apply {
-            moveTo(w, cy)
-            lineTo(w - arrowSize * 1.5f, cy - arrowSize)
+            moveTo(w - arrowSize * 1.5f, cy - arrowSize)
+            lineTo(w, cy)
             lineTo(w - arrowSize * 1.5f, cy + arrowSize)
-            close()
         }
         canvas.drawPath(xArrowPath, arrowPaint)
 
-        // Y axis top arrow
+        // Y axis top arrow (hollow V-shape)
         val yArrowPath = Path().apply {
-            moveTo(cx, 0f)
-            lineTo(cx - arrowSize, arrowSize * 1.5f)
+            moveTo(cx - arrowSize, arrowSize * 1.5f)
+            lineTo(cx, 0f)
             lineTo(cx + arrowSize, arrowSize * 1.5f)
-            close()
         }
         canvas.drawPath(yArrowPath, arrowPaint)
 
