@@ -35,28 +35,26 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerOperation.adapter = adapter
 
+        var isInitialSelection = true
+
         spinnerOperation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == 0) {
-                    return // Pozycja początkowa (prompt)
+                if (isInitialSelection) {
+                    isInitialSelection = false
+                    return
                 }
 
                 hideKeyboard()
-                val inputs = validateInputs(etRealA, etImagA, etRealB, etImagB)
-                if (inputs == null) {
-                    spinnerOperation.setSelection(0)
-                    return
-                }
+                val inputs = validateInputs(etRealA, etImagA, etRealB, etImagB) ?: return
                 val (aRe, aIm, bRe, bIm) = inputs
 
                 when (position) {
-                    1 -> { // Plus (Dodawanie)
+                    0 -> { // Plus (Dodawanie)
                         val resRe = aRe + bRe
                         val resIm = aIm + bIm
 
                         if (!resRe.isFinite() || !resIm.isFinite()) {
                             showToast("Wynik wykracza poza dopuszczalny zakres liczbowy (overflow)!")
-                            spinnerOperation.setSelection(0)
                             return
                         }
 
@@ -64,13 +62,12 @@ class MainActivity : AppCompatActivity() {
                         val resultString = formatComplex(resRe, resIm)
                         showToast("Wynik dodawania: $resultString")
                     }
-                    2 -> { // Gwiazdka (Mnożenie)
+                    1 -> { // Gwiazdka (Mnożenie)
                         val resRe = aRe * bRe - aIm * bIm
                         val resIm = aRe * bIm + aIm * bRe
 
                         if (!resRe.isFinite() || !resIm.isFinite()) {
                             showToast("Wynik wykracza poza dopuszczalny zakres liczbowy (overflow)!")
-                            spinnerOperation.setSelection(0)
                             return
                         }
 
@@ -79,9 +76,6 @@ class MainActivity : AppCompatActivity() {
                         showToast("Wynik mnożenia: $resultString")
                     }
                 }
-
-                // Reset spinnera do pozycji 0, aby ponowne wybranie tej samej opcji działało ponownie
-                spinnerOperation.setSelection(0)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
